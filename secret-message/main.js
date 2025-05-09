@@ -14,7 +14,7 @@ secretMessage.push('to', 'Program');
 
 // console.log(secretMessage[7]);
 
-secretMessage.splice(7, 1, 'right');
+secretMessage[7] = 'right';
 
 // console.log(secretMessage[7]);
 
@@ -28,4 +28,4 @@ secretMessage.unshift('Programming');
 
 secretMessage.splice(6, 5, 'know');
 
-console.log(secretMessage.join());
+console.log(secretMessage.join(' '));
