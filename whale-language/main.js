@@ -1,24 +1,25 @@
 const input = 'turpentine and turtles';
 const vowels = ['a', 'e', 'i', 'o', 'u'];
-var resultArray = [];
+const resultArray = [];
 
 for (let i = 0; i < input.length; i++) {
-    const letters = input[i];
+    const letter = input[i];
     // console.log(letters)
 
-    if (input[i] === 'e' || input[i] === 'u') {
-        resultArray.push(input[i].toUpperCase());
+    if (letter === 'e' || letter === 'u') {
+        resultArray.push(letter);
     }
 
         for (let j = 0; j < vowels.length; j++) {
         const whaleLetters = vowels[j];
         // console.log(whaleLetters);
 
-            if (input[i] === vowels[j]) {
-            resultArray.push(vowels[j].toUpperCase());  
+            if (letter === whaleLetters) {
+            resultArray.push(letter);  
         }
     }
 };
 
+const resultString = resultArray.join('').toUpperCase();
 
-console.log(resultArray.join('')); 
+console.log(resultString); 
