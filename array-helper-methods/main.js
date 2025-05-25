@@ -150,6 +150,95 @@ var findWhere = function (array, objCriteria) {
   return result;
 }
 
-console.log(findWhere(shoes, {price: 95}));
+//console.log(findWhere(shoes, {price: 95}));
 
 var myShoe = findWhere(shoes, {price: 95}); 
+
+// using filter -- We updated our posts to make the first three posts invalid
+var posts = [
+  {
+    text:
+      "cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea cursus in hac habitasse platea",
+    platform: "twitter",
+  },
+  {
+    text: "egestas erat imperdiet sed euismod Mark Zuckerberg Sucks!",
+    platform: "facebook",
+  },
+  { text: "egestas erat imperdiet sed euismod", platform: "myspace" },
+  { text: "risus viverra adipiscing at in", platform: "facebook" },
+  { text: "ullamcorper eget nulla facilisi etiam", platform: "instagram" },
+  { text: "feugiat pretium nibh ipsum consequat", platform: "twitter" },
+  { text: "sit amet mattis vulputate enim", platform: "facebook" },
+];
+
+// Loop through each post to determine if it is acceptable, the function passed to filter as a parameter takes in a post object and returns either true/false to keep it in the array of posts returned by filter.
+var acceptablePosts = posts.filter(function (post) {
+  // If we are on twitter, make sure that the post has < 280 characters
+  if (post.platform == "twitter") {
+    return post.text.length <= 280;
+  }
+
+  // If we are on facebook or instagram, make sure that our dear leader isn't mentioned
+  if (post.platform == "facebook" || post.platform == "instagram") {
+    return !post.text.includes("Mark Zuckerberg");
+  }
+
+  // If it is some other platform, don't post it
+  return false;
+});
+
+
+// Use filter to create a new array called shortLanguages which only contains languages whose name is 4 characters or less.
+var languages = ["JavaScript", "Ruby", "Java", "Python", "C", "Swift"];
+
+var shortLanguages = languages.filter(function (lang) {
+  return lang.length <= 4;
+});
+
+// ['Ruby', 'Java', 'C'];
+// console.log(shortLanguages);
+
+// Use filter to create a new array (called whatever you decide) with only shoes that are between $50 and $100
+var shoes = [
+  { name: "Nike", price: 200 },
+  { name: "Red Wings", price: 250 },
+  { name: "Vans", price: 50 },
+  { name: "Converse", price: 60 },
+  { name: "Reebok", price: 130 },
+  { name: "New Balance", price: 75 },
+  { name: "Adidas", price: 95 },
+  { name: "Keds", price: 40 },
+  { name: "Crocs", price: 35 },
+];
+
+var affordableShoes = shoes.filter(function (shoe) {
+  return shoe.price >= 50 && shoe.price <= 100;
+});
+
+// console.log(affordableShoes);
+
+// create an a function called filterOut which does the opposite of filter - any items in the original array that return true should not be part of the new array
+var shoes = [
+  { name: "Nike", price: 200 },
+  { name: "Red Wings", price: 250 },
+  { name: "Vans", price: 50 },
+  { name: "Converse", price: 60 },
+  { name: "Reebok", price: 130 },
+  { name: "New Balance", price: 75 },
+  { name: "Adidas", price: 95 },
+  { name: "Keds", price: 40 },
+  { name: "Crocs", price: 35 },
+];
+
+var filterOut = function (array, iteratorFunction) {
+return array.filter(function(item) {
+return !iteratorFunction(item);
+});
+};
+
+var priceRangeNot50to100 = filterOut(shoes, function (shoe) {
+return shoe.price >= 50 && shoe.price <= 100;
+});
+
+console.log(priceRangeNot50to100);
