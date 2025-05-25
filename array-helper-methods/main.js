@@ -241,4 +241,68 @@ var priceRangeNot50to100 = filterOut(shoes, function (shoe) {
 return shoe.price >= 50 && shoe.price <= 100;
 });
 
-console.log(priceRangeNot50to100);
+// console.log(priceRangeNot50to100);
+
+// Use reduce to find the total cost of buying all the shoes
+var shoes = [
+  { name: "Nike", price: 200 },
+  { name: "Red Wings", price: 250 },
+  { name: "Vans", price: 50 },
+  { name: "Converse", price: 60 },
+  { name: "Reebok", price: 130 },
+  { name: "New Balance", price: 75 },
+  { name: "Adidas", price: 95 },
+  { name: "Keds", price: 40 },
+  { name: "Crocs", price: 35 },
+];
+
+var shoeTotal = shoes.reduce(function (total, shoe) {
+  return shoe.price + total;
+}, 0);
+
+// console.log(shoeTotal);
+
+// Use reduce to tally the total number of beers that are IPAs and the beers that are Stouts
+var beers = [
+  { name: '512 IPA', type: 'IPA' },
+  { name: 'Breakfast Stout', type: 'Stout' },
+  { name: 'Pernicious IPA', type: 'IPA' },
+  { name: '90 Minute IPA', type: 'IPA' },
+  { name: 'Obsidian Stout ', type: 'Stout' }
+]
+
+var beerStyles = beers.reduce(function (acc, beer) {
+// first check to see if our acc object already has this beer type as a property
+  if (acc.hasOwnProperty(beer.type)) {
+    // if it does, increment the count of that property
+    acc[beer.type] += 1
+  } else {
+    // if it does not then set it to 1
+    acc[beer.type] = 1;
+  }
+
+  return acc
+}, {});
+
+// console.log(beerStyles);
+// {IPA: 3, Stout: 2}
+
+// Create a function called unique which utilizes find and reduce to return a new array without the duplicate values
+var numbers = [1, 1, 1, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5];
+
+var unique = function (array) {
+  return array.reduce(function (accumulator, num) {
+    var exists = accumulator.find(function (item) {
+      return num === item;
+    });
+    
+    if (!exists) {
+      accumulator.push(num);
+    };
+        
+    return accumulator;
+  }, []);
+}
+
+console.log(unique(numbers)); 
+// [1, 2, 3, 4, 5]
