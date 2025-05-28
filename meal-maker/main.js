@@ -4,20 +4,24 @@ const menu = {
         mains: [], 
         desserts: []
     },
-    addDishToCourse: function(courseName, dishName, dishPrice) {
-        let dish = {name: dishName, price: dishPrice}
-        this[courses][courseName].push(dish);
+    addDishToCourse(courseName, dishName, dishPrice) {
+        const dish = {
+            name: dishName, 
+            price: dishPrice
+        };
+        console.log(menu.courses[courseName]);
+        menu.courses[courseName].push(dish);
     },
-    getRandomDishFromCourse: function(courseName) {
-        let dishes = this[courses];
-        let randomSelector = Math.floor(Math.random()*dishes.length);
+    getRandomDishFromCourse(courseName) {
+        const dishes = menu.courses[courseName];
+        const randomSelector = Math.floor(Math.random() * dishes.length);
         return dishes[randomSelector];
     },
-    generateRandomMeal: function() {
-        let appetizer = this.getRandomDishFromCourse('appetizers');
-        let main = this.getRandomDishFromCourse('mains');
-        let dessert = this.getRandomDishFromCourse('desserts');
-        return `Your meal will begin with ${appetizer.name}, followed by the ${main.name} and finished with ${dessert.name}. Your total for the meal will be $${bill}.`;
+    generateRandomMeal() {
+        const appetizer = menu.getRandomDishFromCourse('appetizers');
+        const main = menu.getRandomDishFromCourse('mains');
+        const dessert = menu.getRandomDishFromCourse('desserts');
+        return `Your meal will begin with ${appetizer.name} for $${appetizer.price}, followed by the ${main.name} for $${main.price} and finished with ${dessert.name} for $${dessert.price}. Your total for the meal will be $${appetizer.price + main.price + dessert.price}.`;
     }
 };
 
@@ -27,9 +31,9 @@ menu.addDishToCourse('appetizers', 'mac & cheese', 8);
 menu.addDishToCourse('mains', 'tofu scramble', 13);
 menu.addDishToCourse('mains', 'buffalo chick-n sandwich', 16);
 menu.addDishToCourse('mains', 'penne vodka', 21);
-menu.addDishToCourse('dessert', 'ice cream sundae', 6);
-menu.addDishToCourse('dessert', 'chocolate chip cookies', 4);
-menu.addDishToCourse('dessert', 'bananana cream pie', 8);
+menu.addDishToCourse('desserts', 'ice cream sundae', 6);
+menu.addDishToCourse('desserts', 'chocolate chip cookies', 4);
+menu.addDishToCourse('desserts', 'banana cream pie', 8);
 
 console.log(menu.courses);
 
