@@ -47,7 +47,51 @@ for (let i = 0; i < numSamples; i++) {
 
 let lowestSample = Math.min(...sampleAverages);
 
-console.log(sampleAverages);
-console.log(lowestSample);
+// console.log(sampleAverages);
+// console.log(lowestSample);
 
-console.log(sampleAverages.indexOf(lowestSample) +1);
+// console.log(sampleAverages.indexOf(lowestSample) +1);
+
+let array1 = ['a', 'banana', 'b', 'c', 'a', 'a', 'b', 'd'];
+let array2 = ['a', 'b', 'b', 'a', 'e', 'banana', 'c', 'c', 'g'];
+
+// count objects for each array
+
+let count1 = {};
+let count2 = {};
+
+array1.forEach(function (item) {
+    if (count1.hasOwnProperty(item)) {
+        count1[item] += 1;
+    } else {
+        count1[item] = 1;
+    }
+}); 
+
+array2.forEach(function (item) {
+    if (count2.hasOwnProperty(item)) {
+        count2[item] += 1;
+    } else {
+        count2[item] = 1;
+    }
+}); 
+
+// loop over array & identify overlap
+
+let result = [];
+
+for (prop1 in count1) {
+    for (prop2 in count2) {
+        if (prop1 === prop2) {
+            
+        let frequency = Math.min(count1[prop1], count2[prop2]);
+            
+        for (let i=0; i<frequency; i++) {
+            result.push(prop1);
+            }
+       }
+    }
+}
+ 
+console.log(result);
+// let result = ['a', 'a', 'c', 'b', 'b'];
